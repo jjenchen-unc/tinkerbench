@@ -64,6 +64,10 @@ pre{background:var(--card);border:1px solid var(--line);border-radius:8px;paddin
 </div>
 <p class="lede" style="margin-top:20px">Wrenches: several look-alike wrenches, only one of which fits the bolt. Task: secure a cover.</p>
 <div class="grid">
+<figure><video src="videos/b1_opus_explore.mp4" controls muted playsinline preload="metadata"></video>
+<figcaption><span class="tag ref">exploration</span><b>Opus, no task given</b> (2&times;). It ends exploration after 0.7 of the 24 allowed minutes.</figcaption></figure>
+<figure><video src="videos/b1_sol_explore.mp4" controls muted playsinline preload="metadata"></video>
+<figcaption><span class="tag ref">exploration</span><b>Sol, no task given</b> (4&times;). It picks up the wrenches and explores for 4.3 of the 24 allowed minutes.</figcaption></figure>
 <figure><video src="videos/b1_opus_task.mp4" controls muted playsinline preload="metadata"></video>
 <figcaption><span class="tag bad">failure</span><b>Opus, task after exploring</b> (2&times;). It does not identify the cover and parks both arms.</figcaption></figure>
 <figure><video src="videos/b1_oracle.mp4" controls muted playsinline preload="metadata"></video>
@@ -77,6 +81,8 @@ pre{background:var(--card);border:1px solid var(--line);border-radius:8px;paddin
 <figcaption><span class="tag ref">exploration</span><b>Opus, no task given</b> (2&times;). It grasps, lifts, and places the bars; the stage ends early when a finger strikes the tall block.</figcaption></figure>
 <figure><video src="videos/b4_opus_task.mp4" controls muted playsinline preload="metadata"></video>
 <figcaption><span class="tag ok">success</span><b>Opus, task after exploring</b> (2&times;). After a reset, it balances bar A on the edge.</figcaption></figure>
+<figure><video src="videos/b4_sol_explore.mp4" controls muted playsinline preload="metadata"></video>
+<figcaption><span class="tag ref">exploration</span><b>Sol, no task given</b> (2&times;). It lifts each bar and estimates its center of mass from the wrist torque; the stage ends when a finger limit is exceeded.</figcaption></figure>
 <figure><video src="videos/b4_sol_direct.mp4" controls muted playsinline preload="metadata"></video>
 <figcaption><span class="tag ok">success</span><b>Sol, task given directly</b> (2&times;). Sol succeeds in all runs with or without exploring.</figcaption></figure>
 <figure><video src="videos/b4_oracle.mp4" controls muted playsinline preload="metadata"></video>
