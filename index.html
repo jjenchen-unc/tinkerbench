@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TinkerBench</title>
+<meta name="description" content="TinkerBench: A Benchmark for Discovering and Reusing Physical Knowledge Through Interaction">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbfaf7;--fg:#1d1d1f;--muted:#5c5c63;--line:#e3e1db;--card:#ffffff;--accent:#2f5d8a;--ok:#2e7d4f;--bad:#a8432f}
+@media (prefers-color-scheme: dark){:root{--bg:#141416;--fg:#ececef;--muted:#a3a3ab;--line:#2c2c31;--card:#1c1c20;--accent:#8db4dc;--ok:#7fc79b;--bad:#e08a75}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 Inter,system-ui,sans-serif}
+main{max-width:1040px;margin:0 auto;padding:48px 16px 72px}
+h1{font:600 clamp(28px,4.4vw,42px)/1.15 "Source Serif 4",Georgia,serif;text-align:center;margin:0 0 16px}
+h2{font:600 24px/1.3 "Source Serif 4",Georgia,serif;margin:56px 0 12px;padding-top:8px;border-top:1px solid var(--line)}
+.authors{text-align:center;font-size:17px}
+.aff{text-align:center;color:var(--muted);margin-top:2px}
+.venue{text-align:center;color:var(--muted);font-size:14px;margin-top:6px}
+.abstract{max-width:760px;margin:32px auto 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:16px}
+figure{margin:0;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+video{display:block;width:100%;height:auto;background:#000}
+figcaption{padding:10px 14px 14px;font-size:14px;color:var(--muted)}
+figcaption b{color:var(--fg);font-weight:600}
+.tag{display:inline-block;font-size:12px;font-weight:600;padding:1px 8px;border-radius:99px;margin-right:6px;border:1px solid currentColor}
+.ok{color:var(--ok)}.bad{color:var(--bad)}.ref{color:var(--muted)}
+.lede{color:var(--muted);margin:0 0 4px}
+table{width:100%;border-collapse:collapse;font-size:14px;margin-top:12px}
+th,td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:left}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+.tw{overflow-x:auto}
+pre{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px;font-size:13px;overflow-x:auto}
+</style>
+</head>
+<body>
+<main>
+<h1>TinkerBench: A Benchmark for Discovering<br>and Reusing Physical Knowledge Through Interaction</h1>
+<div class="authors">Jr-Jen Chen &nbsp;·&nbsp; Yue Yang &nbsp;·&nbsp; Gedas Bertasius</div>
+<div class="aff">University of North Carolina at Chapel Hill</div>
+<div class="venue">CoRL 2026 Late Breaking Results</div>
+
+<p class="abstract">A key aspect of intelligence is gathering the information needed to solve a new problem. TinkerBench studies this ability in the physical world, where information must be gathered through action and perceived through vision and touch. It has seven simulated task families and 26 tasks that require knowledge that cannot be seen: how a mechanism works, a physical property of an object, or which tool fits a part. The robot is either given the task, or first explores the scene without knowing the task and then solves it using what it retained. The videos below are replays of Claude Opus 5.5 and GPT-6.1 Sol controlling two Panda arms through tool calls; agent videos play at 2&times; or 4&times; speed. The bottom-right panel of each video shows the agent's current command.</p>
+
+<h2>Exploration helps, but not through the hidden property</h2>
+<p class="lede">Bars: each bar's mass sits at a hidden point. Task: balance bar A on a narrow edge. Opus succeeds in 1/3 runs when given the task directly and in 3/3 runs after exploring. Its exploration notes record how to grasp and place the bars, where its arms can reach, and what to avoid, but not where the mass sits.</p>
+<div class="grid">
+<figure><video src="videos/b4_opus_explore.mp4" controls muted playsinline preload="metadata"></video>
+<figcaption><span class="tag ref">exploration</span><b>Opus, no task given</b> (2&times;). It grasps, lifts, and places the bars; the stage ends early when a finger strikes the tall block.</figcaption></figure>
+<figure><video src="videos/b4_opus_task.mp4" controls muted playsinline preload="metadata"></video>
+<figcaption><span class="tag ok">success</span><b>Opus, task after exploring</b> (2&times;). After a reset, it balances bar A on the edge.</figcaption></figure>
+<figure><video src="videos/b4_sol_direct.mp4" controls muted playsinline preload="metadata"></video>
+<figcaption><span class="tag ok">success</span><b>Sol, task given directly</b> (2&times;). Sol succeeds in all runs with or without exploring.</figcaption></figure>
+<figure><video src="videos/b4_oracle.mp4" controls muted playsinline preload="metadata"></video>
+<figcaption><span class="tag ref">scripted</span><b>Reference solution</b> that knows the true balance point.</figcaption></figure>
+</div>
+
+<h2>Both agents fail to discover how the objects work</h2>
+<p class="lede">Monitor stand: height, rotation, and tilt are each released by one of two look-alike buttons. Task: set the screen to portrait at a given height.</p>
+<div class="grid">
+<figure><video src="videos/b5_opus_fail.mp4" controls muted playsinline preload="metadata"></video>
+<figcaption><span class="tag bad">failure</span><b>Opus, task given</b> (4&times;). The screen ends in landscape, below the target height; the agent stops.</figcaption></figure>
+<figure><video src="videos/b5_oracle.mp4" controls muted playsinline preload="metadata"></video>
+<figcaption><span class="tag ref">scripted</span><b>Reference solution.</b></figcaption></figure>
+</div>
+<p class="lede" style="margin-top:20px">Bottle: the flip-top lid is held by a catch that a paddle releases. Task: open the lid.</p>
+<div class="grid">
+<figure><video src="videos/b8_sol_fail.mp4" controls muted playsinline preload="metadata"></video>
+<figcaption><span class="tag bad">failure</span><b>Sol, task given</b> (4&times;). The lid is still closed when the time limit is reached.</figcaption></figure>
+<figure><video src="videos/b8_oracle.mp4" controls muted playsinline preload="metadata"></video>
+<figcaption><span class="tag ref">scripted</span><b>Reference solution:</b> press the paddle, then lift the lid.</figcaption></figure>
+</div>
+<p class="lede" style="margin-top:20px">Wrenches: several look-alike wrenches, only one of which fits the bolt. Task: secure a cover.</p>
+<div class="grid">
+<figure><video src="videos/b1_opus_explore.mp4" controls muted playsinline preload="metadata"></video>
+<figcaption><span class="tag ref">exploration</span><b>Opus, no task given</b> (2&times;).</figcaption></figure>
+<figure><video src="videos/b1_opus_task.mp4" controls muted playsinline preload="metadata"></video>
+<figcaption><span class="tag bad">failure</span><b>Opus, task after exploring</b> (2&times;). It does not identify the cover and parks both arms.</figcaption></figure>
+<figure><video src="videos/b1_oracle.mp4" controls muted playsinline preload="metadata"></video>
+<figcaption><span class="tag ref">scripted</span><b>Reference solution:</b> take the wrench that fits, seat it on the bolt, and turn.</figcaption></figure>
+</div>
+
+<h2>Results</h2>
+<div class="tw"><table>
+<thead><tr><th>Task family</th><th>Setting</th><th class="n">Opus success</th><th class="n">Opus SwC</th><th class="n">Opus $/success</th><th class="n">Sol success</th><th class="n">Sol SwC</th><th class="n">Sol $/success</th></tr></thead>
+<tbody>
+<tr><td>Bar balancing</td><td>task given</td><td class="n">1/3</td><td class="n">0.23</td><td class="n">16.8</td><td class="n">3/3</td><td class="n">0.74</td><td class="n">1.2</td></tr>
+<tr><td>Monitor adjustment</td><td>task given</td><td class="n">0/3</td><td class="n">0</td><td class="n">&ndash;</td><td class="n">0/3</td><td class="n">0</td><td class="n">&ndash;</td></tr>
+<tr><td>Bottle opening</td><td>task given</td><td class="n">0/3</td><td class="n">0</td><td class="n">&ndash;</td><td class="n">0/3</td><td class="n">0</td><td class="n">&ndash;</td></tr>
+<tr><td>Bar balancing</td><td>explore first</td><td class="n">3/3</td><td class="n">0.51</td><td class="n">6.6</td><td class="n">3/3</td><td class="n">0.74</td><td class="n">2.6</td></tr>
+<tr><td>Monitor adjustment</td><td>explore first</td><td class="n">0/3</td><td class="n">0</td><td class="n">&ndash;</td><td class="n">0/3</td><td class="n">0</td><td class="n">&ndash;</td></tr>
+<tr><td>Bolt fastening</td><td>explore first</td><td class="n">0/3</td><td class="n">0</td><td class="n">&ndash;</td><td class="n">0/3</td><td class="n">0</td><td class="n">&ndash;</td></tr>
+</tbody></table></div>
+<p class="lede" style="font-size:13px;margin-top:8px">Three runs per setting. SwC (success weighted by cost, after SPL) scores a successful run by the fastest known robot time divided by its own; a failed run scores 0. $/success is the total API cost, including exploration, divided by the number of successes.</p>
+
+<h2>Citation</h2>
+<pre>@inproceedings{chen2026tinkerbench,
+  title     = {TinkerBench: A Benchmark for Discovering and Reusing Physical Knowledge Through Interaction},
+  author    = {Chen, Jr-Jen and Yang, Yue and Bertasius, Gedas},
+  booktitle = {Conference on Robot Learning (CoRL), Late Breaking Results},
+  year      = {2026}
+}</pre>
+</main>
+</body>
+</html>
