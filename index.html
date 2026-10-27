@@ -47,19 +47,6 @@ pre{background:var(--card);border:1px solid var(--line);border-radius:8px;paddin
 
 <p class="abstract">A key aspect of intelligence is gathering the information needed to solve a new problem. TinkerBench studies this ability in the physical world, where information must be gathered through action and perceived through vision and touch. It has seven simulated task families and 26 tasks that require knowledge that cannot be seen: how a mechanism works, a physical property of an object, or which tool fits a part. The robot is either given the task, or first explores the scene without knowing the task and then solves it using what it retained. The videos below are replays of Claude Opus 5.5 and GPT-6.1 Sol controlling two Panda arms through tool calls; each video shows the agent view and the front view, and agent videos play at 2&times; or 4&times; speed.</p>
 
-<h2>Exploration helps, but not through the hidden property</h2>
-<p class="lede">Bars: each bar's mass sits at a hidden point. Task: balance bar A on a narrow edge. Opus succeeds in 1/3 runs when given the task directly and in 3/3 runs after exploring. Its exploration notes record how to grasp and place the bars, where its arms can reach, and what to avoid, but not where the mass sits.</p>
-<div class="grid">
-<figure><video src="videos/b4_opus_explore.mp4" controls muted playsinline preload="metadata"></video>
-<figcaption><span class="tag ref">exploration</span><b>Opus, no task given</b> (2&times;). It grasps, lifts, and places the bars; the stage ends early when a finger strikes the tall block.</figcaption></figure>
-<figure><video src="videos/b4_opus_task.mp4" controls muted playsinline preload="metadata"></video>
-<figcaption><span class="tag ok">success</span><b>Opus, task after exploring</b> (2&times;). After a reset, it balances bar A on the edge.</figcaption></figure>
-<figure><video src="videos/b4_sol_direct.mp4" controls muted playsinline preload="metadata"></video>
-<figcaption><span class="tag ok">success</span><b>Sol, task given directly</b> (2&times;). Sol succeeds in all runs with or without exploring.</figcaption></figure>
-<figure><video src="videos/b4_oracle.mp4" controls muted playsinline preload="metadata"></video>
-<figcaption><span class="tag ref">scripted</span><b>Reference solution</b> that knows the true balance point.</figcaption></figure>
-</div>
-
 <h2>Both agents fail to discover how the objects work</h2>
 <p class="lede">Monitor stand: height, rotation, and tilt are each released by one of two look-alike buttons. Task: set the screen to portrait at a given height.</p>
 <div class="grid">
@@ -81,6 +68,19 @@ pre{background:var(--card);border:1px solid var(--line);border-radius:8px;paddin
 <figcaption><span class="tag bad">failure</span><b>Opus, task after exploring</b> (2&times;). It does not identify the cover and parks both arms.</figcaption></figure>
 <figure><video src="videos/b1_oracle.mp4" controls muted playsinline preload="metadata"></video>
 <figcaption><span class="tag ref">scripted</span><b>Reference solution:</b> take the wrench that fits, seat it on the bolt, and turn.</figcaption></figure>
+</div>
+
+<h2>Exploration helps, but not through the hidden property</h2>
+<p class="lede">Bars: each bar's mass sits at a hidden point. Task: balance bar A on a narrow edge. Opus succeeds in 1/3 runs when given the task directly and in 3/3 runs after exploring. Its exploration notes record how to grasp and place the bars, where its arms can reach, and what to avoid, but not where the mass sits.</p>
+<div class="grid">
+<figure><video src="videos/b4_opus_explore.mp4" controls muted playsinline preload="metadata"></video>
+<figcaption><span class="tag ref">exploration</span><b>Opus, no task given</b> (2&times;). It grasps, lifts, and places the bars; the stage ends early when a finger strikes the tall block.</figcaption></figure>
+<figure><video src="videos/b4_opus_task.mp4" controls muted playsinline preload="metadata"></video>
+<figcaption><span class="tag ok">success</span><b>Opus, task after exploring</b> (2&times;). After a reset, it balances bar A on the edge.</figcaption></figure>
+<figure><video src="videos/b4_sol_direct.mp4" controls muted playsinline preload="metadata"></video>
+<figcaption><span class="tag ok">success</span><b>Sol, task given directly</b> (2&times;). Sol succeeds in all runs with or without exploring.</figcaption></figure>
+<figure><video src="videos/b4_oracle.mp4" controls muted playsinline preload="metadata"></video>
+<figcaption><span class="tag ref">scripted</span><b>Reference solution</b> that knows the true balance point.</figcaption></figure>
 </div>
 
 <h2>Results</h2>
