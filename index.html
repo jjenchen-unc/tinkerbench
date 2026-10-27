@@ -50,14 +50,12 @@ pre{background:var(--card);border:1px solid var(--line);border-radius:8px;paddin
 <h2>Both agents fail to discover how the objects work</h2>
 <p class="lede">Monitor stand: height, rotation, and tilt are each released by one of two look-alike buttons. Task: set the screen to portrait at a given height.</p>
 <div class="grid">
+<figure><video src="videos/b5_opus_explore.mp4" controls muted playsinline preload="metadata"></video>
+<figcaption><span class="tag ref">exploration</span><b>Opus, no task given</b> (2&times;). It ends exploration after 0.6 of the 6.9 allowed minutes; no agent solves the task after exploring (0/6 runs).</figcaption></figure>
 <figure><video src="videos/b5_opus_fail.mp4" controls muted playsinline preload="metadata"></video>
 <figcaption><span class="tag bad">failure</span><b>Opus, task given</b> (4&times;). The screen ends in landscape, below the target height; the agent stops.</figcaption></figure>
 <figure><video src="videos/b5_opus_mechinfo.mp4" controls muted playsinline preload="metadata"></video>
 <figcaption><span class="tag ok">success</span><b>Opus, also told how the release mechanism works</b> (4&times;): each motion is unlocked only while one of its two look-alike buttons is held in. It sets the screen to portrait (Opus 2/3, Sol 1/3 runs with this information).</figcaption></figure>
-<figure><video src="videos/b5_opus_explore.mp4" controls muted playsinline preload="metadata"></video>
-<figcaption><span class="tag ref">exploration</span><b>Opus, no task given</b> (2&times;). It ends exploration after 0.6 of the 6.9 allowed minutes.</figcaption></figure>
-<figure><video src="videos/b5_sol_explore.mp4" controls muted playsinline preload="metadata"></video>
-<figcaption><span class="tag ref">exploration</span><b>Sol, no task given</b> (4&times;). It explores for 3.2 of the 6.9 allowed minutes; neither agent then solves the task (0/6 runs).</figcaption></figure>
 <figure><video src="videos/b5_oracle.mp4" controls muted playsinline preload="metadata"></video>
 <figcaption><span class="tag ref">scripted</span><b>Reference solution.</b></figcaption></figure>
 </div>
